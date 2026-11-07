@@ -2,3 +2,61 @@
 html:not(.motion) .photo-object{transform:none;filter:none}html:not(.motion) .slice{transform:none!important;filter:none!important}html:not(.motion) .scroll-invite{font-size:0}html:not(.motion) .scroll-invite:after{content:'Une vraie réalisation de MB Paysage · découvrir plus bas ↓';font-size:12px}html:not(.motion) .scroll-invite span{display:none}
 @media(min-width:760px){.header{padding:30px 44px}.brand{font-size:22px}.brand small{font-size:12px}.project-nav{font-size:16px}.hero-copy{top:110px}.hero-copy h1{font-size:clamp(64px,8vw,110px);line-height:.95}.hero-copy>p{font-size:14px;margin-bottom:20px}.photo-object{left:22%;width:56%;height:48%;top:38%}.js.motion .photo-object{left:calc(22% * (1 - var(--p)));width:calc(56% + 44% * var(--p));top:calc(38% * (1 - var(--p)));height:calc(48% + 52% * var(--p));transform:rotate(calc(-7deg * (1 - var(--p))))}.scroll-invite{font-size:15px;bottom:45px}.study-note{bottom:14px}.reveal-caption{padding:26px 44px;grid-template-columns:1fr 1fr;align-items:end}.reveal-caption p{font-size:52px}.reveal-caption>span{justify-self:end;font-size:12px}.gardens{padding:65px 44px 0}.gardens-intro{grid-template-columns:1fr 1fr;gap:28px}.gardens-intro>p:first-child{grid-column:1/-1}.gardens h2{font-size:52px}.gardens-intro>p:last-child{align-self:end;font-size:17px;justify-self:end}.garden-explorer{margin-top:46px}.garden-controls{max-width:700px;margin:0 auto 28px;gap:30px}.garden-controls button{font-size:16px}.garden-explorer figure>img{aspect-ratio:1.9}.garden-explorer figcaption{grid-template-columns:1fr auto;align-items:center;margin-top:30px}.garden-explorer h3{font-size:38px}.garden-explorer figcaption p{font-size:16px}.word-of-mouth{grid-template-columns:1fr 1.6fr;gap:50px;margin-top:50px;padding:45px 0 55px}.word-of-mouth blockquote>p{font-size:43px}.word-of-mouth blockquote footer,.word-of-mouth>div>p{font-size:12px}.quote-section{padding:64px 44px;grid-template-columns:1fr 1fr;gap:85px}.quote-heading h2{font-size:96px}.quote-heading>p:last-of-type{font-size:18px}.footer{grid-template-columns:1fr 1.5fr auto;padding:40px 44px;align-items:start}.footer p{font-size:11px}.up{justify-self:end}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+/* Audit du 7 novembre : géométrie fixe, seuls transform et opacity évoluent. */
+html.js.motion .photo-object{left:0;top:0;width:100%;height:100%;transform-origin:0 0;filter:none;will-change:transform}
+html.js.motion .slice{will-change:transform;filter:none!important;transform-style:preserve-3d}
+html.js.motion .slice img{left:0;transform-origin:0 0;will-change:transform}
+.photo-object{filter:none!important}
+.fold-shade{position:absolute;inset:0;background:#000;pointer-events:none;opacity:0;will-change:opacity}
+html:not(.motion) .fold-shade{display:none}
+.hero-copy{opacity:1!important;line-height:1.5;background:var(--night);padding:8px 0}
+.hero-copy h1{line-height:1.06}
+.scroll-invite,.study-note{opacity:1!important}
+.reveal-caption{opacity:1!important;transform:translate3d(0,100%,0);background:var(--night);will-change:transform}
+html:not(.motion) .reveal-caption{display:none}
+.motion-toggle{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);min-width:180px;min-height:44px;padding:8px 12px;background:var(--night);color:var(--peach);border:1px solid var(--peach);font-size:14px;z-index:4}
+.motion-toggle:disabled{border-color:#aa8d91;opacity:1}
+.study-note{bottom:4px;font-size:14px;line-height:1.5;padding-inline:12px}
+.scroll-invite{bottom:112px;font-size:14px;line-height:1.5;background:var(--night);padding:4px 0}
+.scroll-invite span{font-size:inherit!important;margin:0!important}
+.scroll-invite .motion-instruction{display:none}
+html.motion .scroll-invite .motion-instruction{display:block}
+html.motion .scroll-invite .static-instruction{display:none}
+html:not(.motion) .scroll-invite{font-size:14px}
+html:not(.motion) .scroll-invite span.static-instruction{display:block}
+html:not(.motion) .scroll-invite:after{content:none}
+.brand small,.hero-copy>p,.reveal-caption>span,.gardens-intro>p:first-child,.word-of-mouth>div>p,.word-of-mouth blockquote footer,.quote-heading>p:first-child,.disclosure,label span,.help,.error,.footer p,.up{font-size:14px;line-height:1.5}
+body{line-height:1.6}
+.header .brand,.project-nav,.footer .brand,.up,.word-of-mouth>div>a,#garden-to-form,#edit-request,.garden-controls button{min-height:44px;min-width:44px;display:inline-flex;align-items:center}
+.brand{flex-direction:column;align-items:flex-start!important;justify-content:center}
+.garden-controls button{justify-content:center;font-size:16px;line-height:1.5;overflow-wrap:anywhere}
+.word-of-mouth>div>a{padding-block:10px}
+input,textarea,select{min-height:48px}
+select{display:block;width:100%;padding:12px;background:var(--night);border:1px solid #aa8d91;color:var(--peach);font:inherit;border-radius:0}
+#contact-label{font-size:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--peach);outline-offset:4px}
+.gardens a:focus-visible,.gardens button:focus-visible{outline-color:var(--night)}
+input,textarea,select{scroll-margin-block:32px}
+.header{gap:16px}
+.prepare{min-height:48px}
+.quote-section>*{min-width:0}
+label{line-height:1.5}
+html.readable-layout .header{position:relative;flex-wrap:wrap}
+html.readable-layout .unfold-scene{height:auto!important;min-height:0!important}
+html.readable-layout .stage{height:auto;min-height:0;overflow:visible;padding:20px 20px 24px;display:flex;flex-direction:column;gap:28px}
+html.readable-layout .hero-copy{position:static;transform:none!important;visibility:visible!important}
+html.readable-layout .photo-object{position:relative;inset:auto;width:100%;height:65vw;transform:none!important}
+html.readable-layout .scroll-invite,html.readable-layout .study-note,html.readable-layout .motion-toggle{position:static;transform:none;width:auto;text-align:center}
+html.readable-layout .reveal-caption{display:none}
+@media(min-width:760px){.scroll-invite{bottom:112px}.study-note{bottom:4px}}
+html.readable-layout h1,html.readable-layout h2,html.readable-layout h3{overflow-wrap:anywhere}
+.motion-toggle{min-width:min(180px,100%);max-width:100%}
+.word-of-mouth>div>a{max-width:100%;overflow-wrap:anywhere}
+.reveal-caption{padding-bottom:90px}
+.form-result dt{font-size:14px;line-height:1.5}
+/* Le contrôle ne doit pas masquer une légende pendant son entrée. */
+.motion-toggle{top:80px;bottom:auto}
+.motion-toggle:focus-visible{box-shadow:0 0 0 8px var(--night)}
+.scroll-invite{bottom:64px}
+.reveal-caption{padding-bottom:22px}
+@media(min-width:760px){.scroll-invite{bottom:64px}}
